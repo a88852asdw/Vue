@@ -1,0 +1,342 @@
+<pdf>
+    <#assign pagecurr=headerInfo.pageCurrent />
+    <#assign pageconut=headerInfo.pageConut />
+
+    <head>
+        <link name="NotoSans" type="font" subtype="truetype" src="${nsfont.NotoSans_Regular}"
+            src-bold="${nsfont.NotoSans_Bold}" src-italic="${nsfont.NotoSans_Italic}"
+            src-bolditalic="${nsfont.NotoSans_BoldItalic}" bytes="2" />
+        <#if .locale=="zh_CN">
+            <link name="NotoSansCJKsc" type="font" subtype="opentype" src="${nsfont.NotoSansCJKsc_Regular}"
+                src-bold="${nsfont.NotoSansCJKsc_Bold}" bytes="2" />
+            <#elseif .locale=="zh_TW">
+                <link name="NotoSansCJKtc" type="font" subtype="opentype" src="${nsfont.NotoSansCJKtc_Regular}"
+                    src-bold="${nsfont.NotoSansCJKtc_Bold}" bytes="2" />
+                <#elseif .locale=="ja_JP">
+                    <link name="NotoSansCJKjp" type="font" subtype="opentype" src="${nsfont.NotoSansCJKjp_Regular}"
+                        src-bold="${nsfont.NotoSansCJKjp_Bold}" bytes="2" />
+                    <#elseif .locale=="ko_KR">
+                        <link name="NotoSansCJKkr" type="font" subtype="opentype" src="${nsfont.NotoSansCJKkr_Regular}"
+                            src-bold="${nsfont.NotoSansCJKkr_Bold}" bytes="2" />
+                        <#elseif .locale=="th_TH">
+                            <link name="NotoSansThai" type="font" subtype="opentype"
+                                src="${nsfont.NotoSansThai_Regular}" src-bold="${nsfont.NotoSansThai_Bold}" bytes="2" />
+        </#if>
+        <style type="text/css">
+            * {
+                <#if .locale=="zh_CN">font-family: NotoSans, NotoSansCJKsc, sans-serif;
+                <#elseif .locale=="zh_TW">font-family: NotoSans, NotoSansCJKtc, sans-serif;
+                <#elseif .locale=="ja_JP">font-family: heiseimin, hygothic, sans-serif;
+                <#elseif .locale=="ko_KR">font-family: NotoSans, NotoSansCJKkr, sans-serif;
+                <#elseif .locale=="th_TH">font-family: NotoSans, NotoSansThai, sans-serif;
+                <#else>font-family: NotoSans, sans-serif;
+                </#if>
+            }
+
+            table {
+                border: 0;
+                border-collapse: 0;
+                border-spacing: 0;
+            }
+
+            tr {
+                padding: 0;
+                margin: 0;
+            }
+
+            td {
+                vertical-align: middle;
+                padding: 0;
+                margin: 0;
+            }
+
+            .topline {
+                border-top: 0.5px solid black;
+            }
+
+            .leftline {
+                border-left: 0.5px solid black;
+            }
+
+            .rightline {
+                border-right: 0.5px solid black;
+            }
+
+            .bottomline {
+                border-bottom: 0.5px solid black;
+            }
+
+            .align_right {
+                align: right;
+            }
+
+            .padding_right {
+                padding-right: 5pt;
+            }
+
+            .padding_right_3 {
+                padding-right: 3pt;
+            }
+
+            .padding_left {
+                padding-left: 5pt;
+            }
+
+            .padding_left_3 {
+                padding-left: 3pt;
+            }
+        </style>
+    </head>
+
+    <body padding="0.5in 0.28in 0.3in 0.52in" size="A4">
+        <!-- ヘッダー スタート-->
+        <table border="0pt" style="width: 100%;">
+            <tr style="line-height: 12pt;">
+                <td width="75pt">&nbsp;</td>
+                <td align="left" style="width: 67pt; font-size: 18pt; padding-bottom: 4pt;">&nbsp;${headerInfo.mark}
+                </td>
+                <td align="center" style="width: 240pt; font-size: 16.5pt; border-bottom: 0.75pt solid black;">
+                    ${headerInfo.markListZerolist}${headerInfo.markListOnelist}
+                </td>
+                <td align="right" style="width: 73pt; font-size: 18pt;">${headerInfo.mark}&nbsp;</td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td valign="bottom" rowspan="2" width="150pt" style="font-size: 14pt;">${companyinformation.companyname}
+                </td>
+                <td rowspan="2" width="100pt">&nbsp;</td>
+                <td align="left" valign="bottom" rowspan="2" width="30pt" style="font-size: 14pt;">様</td>
+                <td valign="bottom" width="45pt" style="font-size: 8pt; border-bottom: 0.75pt solid black;">取引先名
+                </td>
+                <td width="208pt">&nbsp;</td>
+            </tr>
+            <tr height="15pt" style="line-height: 8pt;">
+                <td valign="bottom" style="font-size: 8pt; border-bottom: 0.75pt solid black;" colspan="2">
+                    ${headerInfo.altName}
+                </td>
+            </tr>
+        </table>
+
+        <table border="0pt" style="width: 100%;">
+            <tr>
+                <td height="12pt">&nbsp;</td>
+            </tr>
+            <!-- 入庫NO -->
+            <tr>
+                <td width="15.75pt" height="9.85pt">&nbsp;</td>
+                <td class="topline leftline rightline" width="45.25pt" style="font-size: 10pt;" align="center">入庫NO
+                </td>
+                <td width="148.25pt" style="font-size:12pt;padding-left: 7pt;">${headerInfo.transactionNumber}</td>
+                <td width="77.75pt"></td>
+                <td width="39pt"></td>
+                <td width="114.75"></td>
+                <td width="100.75" rowspan="2" style="font-size: 17pt; padding-top: 10pt;" align="center"
+                    class="padding_right">
+                    ${headerInfo.holdoutState}
+                </td>
+            </tr>
+            <!--納品日  -->
+            <tr>
+                <td height="10pt">&nbsp;</td>
+                <td class="leftline rightline bottomline" style="font-size: 10pt;" align="center">納品日</td>
+                <td style="font-size:12pt;padding-left: 7pt;">${headerInfo.orderDateformat}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <!-- 発注NO -->
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="topline  leftline rightline bottomline" style="font-size: 9.75pt;" height="15pt">発注NO
+                </td>
+                <td class="padding_left" style="font-size: 9.75pt;">${headerInfo.noteTicketno}
+                </td>
+                <td style="font-size: 9.75pt; padding-right: 5pt;">
+                    &nbsp;&nbsp;(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${pagecurr}&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${pageconut}&nbsp;&nbsp;)
+                </td>
+            </tr>
+            <!--上段⇒発注時  -->
+            <tr>
+                <td colspan="6" height="12.25pt" style="font-size: 10pt;" align="right">[上段⇒発注時、下段⇒納品時]</td>
+                <td></td>
+            </tr>
+        </table>
+        <!-- ヘッダー 終わり -->
+
+        <table style="font-size: 8.5pt;">
+            <!-- 明細のタイトル スタート -->
+            <tr>
+                <!-- 資材番号 -->
+                <td style="width: 37.88pt; padding-top: 3pt;" align="center" class="topline bottomline leftline "
+                    height="14pt">資材番号</td>
+                <!-- 納品資材名 -->
+                <td class="topline bottomline" width="33pt">&nbsp;</td>
+                <!-- 納品資材名 -->
+                <td style="width: 205.75pt;padding-top: 3pt" align="center" class="topline bottomline">
+                    納品資材名</td>
+                <!-- PCS(数量) -->
+                <td style="width: 59.5pt;padding-top: 3pt;" align="center" class="topline bottomline">PCS(数量)</td>
+                <!-- CTS -->
+                <td style="width: 59.5pt;padding-top: 3pt" align="center" class="topline bottomline">CTS</td>
+                <!-- 単価 -->
+                <td style="width: 62.25pt;padding-top: 3pt" align="center" class="topline bottomline">単価</td>
+                <!-- 金額 -->
+                <td style="width: 77.25pt;padding-top: 3pt" align="center" class="topline  rightline bottomline">金額
+                </td>
+            </tr>
+            <!-- 明細のタイトル 終わり -->
+
+            <!-- 明細 スタート -->
+            <#list dataInfo.detail as dataInfo>
+                <tr style="line-height:14.63pt ;">
+                    <!-- 資材番号 -->
+                    <td class="leftline rightline" align="center">${dataInfo.internalid}</td>
+                    <!-- 納品資材名 -->
+                    <td class=" rightline padding_left" colspan="2">${dataInfo.displayName}</td>
+                    <!-- PCS（発注）-->
+                    <#if dataInfo.signPrice?length lt 14>
+                        <td class=" rightline align_right"><span
+                                class="padding_right_3 padding_top">${dataInfo.pcsOrder}</span> </td>
+                        <#else>
+                            <td class=" rightline align_right" style="font-size: 7pt;"><span
+                                    class="padding_right_3 padding_top">${dataInfo.pcsOrder}</span> </td>
+                    </#if>
+                    <!-- CTS（発注）-->
+                    <#if dataInfo.signPrice?length lt 14>
+                        <td class=" rightline align_right "><span
+                                class="padding_right_3 padding_top">${dataInfo.ctsOrder}</span></td>
+                        <#else>
+                            <td class=" rightline align_right " style="font-size: 7pt;"><span
+                                    class="padding_right_3 padding_top">${dataInfo.ctsOrder}</span></td>
+                    </#if>
+                    <!-- 符牒単価 -->
+                    <#if dataInfo.signPrice?length lt 13>
+                        <td class="rightline padding_left_3" align="left">${dataInfo.signPrice}&nbsp;</td>
+                        <#else>
+                            <td class="rightline padding_left_3" align="left" style="font-size: 7pt;">
+                                ${dataInfo.signPrice}&nbsp;</td>
+                    </#if>
+                    <!-- 明細金額 -->
+                    <td class="rightline align_right">&nbsp;</td>
+                </tr>
+                <tr>
+                    <!-- 資材番号 -->
+                    <td height="14.63pt" class="rightline bottomline leftline">&nbsp;</td>
+                    <!-- 納品資材名 -->
+                    <td class="bottomline rightline" colspan="2">&nbsp;</td>
+                    <!-- PCS（納品）-->
+                    <#if dataInfo.signPrice?length lt 14>
+                        <td class="bottomline rightline align_right padding_right_3">${dataInfo.pcsDelivery}</td>
+                        <#else>
+                            <td class="bottomline rightline align_right padding_right_3" style="font-size: 7pt;">
+                                ${dataInfo.pcsDelivery}</td>
+                    </#if>
+                    <!-- CTS（納品）-->
+                    <#if dataInfo.signPrice?length lt 14>
+                        <td class="bottomline rightline align_right  padding_right_3">${dataInfo.ctsDelivery}
+                        </td>
+                        <#else>
+                            <td class="bottomline rightline align_right  padding_right_3" style="font-size: 7pt;">
+                                ${dataInfo.ctsDelivery}
+                            </td>
+                    </#if>
+                    <!-- 明細単価 -->
+                    <#if dataInfo.signPrice?length lt 13>
+                        <td class="bottomline rightline align_right"><span
+                                class=" padding_right_3 padding_top">${dataInfo.detailPrice}&nbsp;</span>
+                        </td>
+                        <#else>
+                            <td class="bottomline rightline align_right" style="font-size: 7pt;"><span
+                                    class=" padding_right_3 padding_top">${dataInfo.detailPrice}&nbsp;</span>
+                            </td>
+                    </#if>
+                    <!-- 明細金額 -->
+                    <#if dataInfo.signPrice?length lt 15>
+                        <td class="rightline bottomline align_right"><span
+                                class=" padding_right_3 padding_top">${dataInfo.amount}&nbsp;</span>
+                        </td>
+                        <#else>
+                            <td class="rightline bottomline align_right" style="font-size: 7pt;"><span
+                                    class=" padding_right_3 padding_top">${dataInfo.amount}&nbsp;</span>
+                            </td>
+                    </#if>
+                </tr>
+            </#list>
+            <!-- 明細 終わり -->
+
+            <#if pagecurr !=pageconut>
+                <!-- フッター スタート -->
+                <tr style="line-height: 14.6pt;">
+                    <td class="rightline bottomline leftline" colspan="2" align="center">仕入先担当者</td>
+                    <td class="padding_left" colspan="5" style="font-size: 8pt;">
+                        (発注担当)${footerInfo.notetheName}</td>
+                </tr>
+                <tr style="line-height: 14pt;">
+                    <td class="leftline rightline" colspan="2">&nbsp;</td>
+                    <td class="padding_left" colspan="3" style="font-size: 8pt;">
+                        (仕上商品)${footerInfo.commodityCode}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${footerInfo.commodityName}</td>
+                    <td colspan="2">&nbsp;</td>
+                </tr>
+                <tr style="line-height: 14pt;">
+                    <td colspan="2" class="leftline rightline">&nbsp;</td>
+                    <td colspan="5">&nbsp;</td>
+                </tr>
+                <tr style="line-height: 14pt;">
+                    <td colspan="2" class="bottomline leftline rightline">&nbsp;</td>
+                    <td colspan="3">&nbsp;</td>
+                    <td align="left" colspan="2" style="font-size: 9pt;">
+                        （${footerInfo.destinationCode}）${footerInfo.outPutDate}</td>
+                </tr>
+                <!-- フッター 終わり -->
+                <#else>
+
+                    <!-- フッター スタート -->
+                    <tr style="line-height: 14.6pt;">
+                        <td class="rightline bottomline leftline" colspan="2" align="center">仕入先担当者</td>
+                        <td class="rightline padding_left" width="205.5pt" style="font-size: 8pt;">
+                            (発注担当)${footerInfo.notetheName}</td>
+                        <!-- 合計（PCS） -->
+                        <td class="bottomline rightline align_right padding_right_3">${footerInfo.pcsSum}</td>
+                        <!-- 合計（CTS） -->
+                        <td class="bottomline rightline align_right padding_right_3">${footerInfo.ctsSum}</td>
+                        <td class="bottomline rightline" align="center">小計</td>
+                        <!-- 税抜合計金額 -->
+                        <td class="rightline bottomline align_right"><span
+                                class="padding_right">${footerInfo.lessSum}</span>
+                        </td>
+                    </tr>
+                    <tr style="line-height: 14pt;">
+                        <td class="leftline rightline" colspan="2">&nbsp;</td>
+                        <td class="padding_left" colspan="3" style="font-size: 8pt;">
+                            (仕上商品)${footerInfo.commodityCode}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${footerInfo.commodityName}
+                        </td>
+                        <td class="leftline bottomline rightline" align="center">消費税</td>
+                        <!-- 消費税額 -->
+                        <td class="rightline bottomline" align="right"><span
+                                class="padding_right">${footerInfo.tax}</span></td>
+                    </tr>
+                    <tr style="line-height: 14pt;">
+                        <td colspan="2" class="leftline rightline">&nbsp;</td>
+                        <td colspan="3">&nbsp;</td>
+                        <td class="rightline bottomline leftline" align="center">合計</td>
+                        <!-- 合計金額 -->
+                        <td class="rightline bottomline " align="right"><span
+                                class="padding_right">${footerInfo.total}</span>
+                        </td>
+                    </tr>
+                    <tr style="line-height: 14pt;">
+                        <td colspan="2" class="bottomline leftline rightline">&nbsp;</td>
+                        <td colspan="3">&nbsp;</td>
+                        <td align="left" colspan="2" style="font-size: 9pt;">
+                            （${footerInfo.destinationCode}）${footerInfo.outPutDate}</td>
+                    </tr>
+                    <!-- フッター 終わり -->
+            </#if>
+        </table>
+    </body>
+</pdf>

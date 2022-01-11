@@ -1,0 +1,373 @@
+<pdf>
+    <#assign pagecurr=headerInfo.pageCurrent />
+    <#assign pageconut=headerInfo.pageConut />
+
+    <head>
+        <link name="NotoSans" type="font" subtype="truetype" src="${nsfont.NotoSans_Regular}"
+            src-bold="${nsfont.NotoSans_Bold}" src-italic="${nsfont.NotoSans_Italic}"
+            src-bolditalic="${nsfont.NotoSans_BoldItalic}" bytes="2" />
+        <#if .locale=="zh_CN">
+            <link name="NotoSansCJKsc" type="font" subtype="opentype" src="${nsfont.NotoSansCJKsc_Regular}"
+                src-bold="${nsfont.NotoSansCJKsc_Bold}" bytes="2" />
+            <#elseif .locale=="zh_TW">
+                <link name="NotoSansCJKtc" type="font" subtype="opentype" src="${nsfont.NotoSansCJKtc_Regular}"
+                    src-bold="${nsfont.NotoSansCJKtc_Bold}" bytes="2" />
+                <#elseif .locale=="ja_JP">
+                    <link name="NotoSansCJKjp" type="font" subtype="opentype" src="${nsfont.NotoSansCJKjp_Regular}"
+                        src-bold="${nsfont.NotoSansCJKjp_Bold}" bytes="2" />
+                    <#elseif .locale=="ko_KR">
+                        <link name="NotoSansCJKkr" type="font" subtype="opentype" src="${nsfont.NotoSansCJKkr_Regular}"
+                            src-bold="${nsfont.NotoSansCJKkr_Bold}" bytes="2" />
+                        <#elseif .locale=="th_TH">
+                            <link name="NotoSansThai" type="font" subtype="opentype"
+                                src="${nsfont.NotoSansThai_Regular}" src-bold="${nsfont.NotoSansThai_Bold}" bytes="2" />
+        </#if>
+        <style type="text/css">
+            * {
+                <#if .locale=="zh_CN">font-family: NotoSans, NotoSansCJKsc, sans-serif;
+                <#elseif .locale=="zh_TW">font-family: NotoSans, NotoSansCJKtc, sans-serif;
+                <#elseif .locale=="ja_JP">font-family: heiseimin, hygothic, sans-serif;
+                <#elseif .locale=="ko_KR">font-family: NotoSans, NotoSansCJKkr, sans-serif;
+                <#elseif .locale=="th_TH">font-family: NotoSans, NotoSansThai, sans-serif;
+                <#else>font-family: NotoSans, sans-serif;
+                </#if>
+            }
+
+            .two_solid {
+                border-right: 0.75pt solid black;
+                border-bottom: 0.5pt solid black;
+            }
+
+            .solid_dotted {
+                border-right: 0.75pt solid black;
+                border-bottom: 0.75pt dotted black;
+            }
+
+            /* .side td {
+                border: 1pt solid black;
+            } */
+        </style>
+    </head>
+
+    <body padding="0.3in 0.1in 0in 0.44in" size="A4">
+        <!-- ヘッダー スタート-->
+        <table class="side">
+            <tr>
+                <!-- 空 -->
+                <td width="48pt">&nbsp;</td>
+                <!-- 〒107-8349 -->
+                <td valign="bottom" width="52.5pt" style="font-size: 8pt;">〒&nbsp;&nbsp;${headerInfo.customerPostNumber}
+                </td>
+                <!-- 空 -->
+                <td width="90pt">&nbsp;</td>
+                <!-- ★★★ -->
+                <td width="38pt" style="font-size: 19pt; line-height: 10pt;">★★★</td>
+                <!-- 空 -->
+                <td width="67pt">&nbsp;</td>
+                <!-- 納品書(控) -->
+                <td width="60pt" style="font-size: 21pt; line-height: 10pt; border-bottom: 1pt solid black;">納品書(控)
+                </td>
+                <!-- 空 -->
+                <td width="65pt">&nbsp;</td>
+                <!-- ★★★ -->
+                <td style="font-size: 19pt; line-height: 10pt;">★★★</td>
+            </tr>
+        </table>
+
+        <table style="font-size: 11pt; line-height: 8pt;" class="side">
+            <tr>
+                <!-- 空 -->
+                <td width="48pt">&nbsp;</td>
+                <!-- 山梨県甲府市大手2丁目4-20 -->
+                <td width="440pt" valign="top">
+                    ${headerInfo.customerCity}${headerInfo.customerVillage}${headerInfo.customerAddress_1}</td>
+                <!-- (1/1) -->
+                <td valign="top">
+                    (&nbsp;&nbsp;&nbsp;&nbsp;${pagecurr}&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;${pageconut}&nbsp;&nbsp;)
+                </td>
+            </tr>
+        </table>
+
+        <table class="side">
+            <tr>
+                <!-- 空 -->
+                <td rowspan="3" width="48pt">&nbsp;</td>
+                <!-- 山梨県甲府市大手2丁目4-20 -->
+                <td width="75pt" style="font-size: 11pt;">
+                    ${headerInfo.customerCity}${headerInfo.customerVillage}${headerInfo.customerAddress_2}</td>
+                <!-- 空 -->
+                <td rowspan="3" width="120pt">&nbsp;</td>
+                <!-- 画像 -->
+                <td align="center" rowspan="3" width="49pt"><img width="30pt" height="30pt"
+                        src="https://5303649-sb1.app.netsuite.com/core/media/media.nl?id=7477&amp;c=5303649_SB1&amp;h=eHjevATXrlp0AhRPDPifWAfSxQtGQDPGb7l9IKUKsnYybGTM&amp;fcts=20211202213643&amp;whence=" />
+                </td>
+                <!-- Crossfor Co. ,Ltd. -->
+                <td style="font-size: 10pt; line-height: 12pt;">${companyinformation.companyname}</td>
+            </tr>
+            <tr>
+                <!-- 有限会社ジュエル・ハヤカフ 御中 -->
+                <td valign="bottom" rowspan="2" style="font-size: 11pt;">${headerInfo.customerName}&nbsp;御中</td>
+                <td style="font-size: 10pt; line-height: 12pt;">${headerInfo.addressee}</td>
+            </tr>
+            <!-- 400-0043 -->
+            <tr>
+                <td style="font-size: 10pt; line-height: 12pt;">${headerInfo.zip}</td>
+            </tr>
+        </table>
+
+        <table style="font-size: 10pt; line-height: 12pt;" class="side">
+            <tr>
+                <!-- 空 -->
+                <td width="391pt">&nbsp;</td>
+                <!-- 山梨県甲府市国母7-11-4 -->
+                <td>
+                    ${headerInfo.state}${headerInfo.city}${headerInfo.addr1}
+                </td>
+            </tr>
+            <tr>
+                <!-- 空 -->
+                <td>&nbsp;</td>
+                <!-- TEL:057-008-9640 -->
+                <td>
+                    TEL&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;${headerInfo.addrphone}
+                </td>
+            </tr>
+            <tr>
+                <!-- 空 -->
+                <td>&nbsp;</td>
+                <!-- FAX:055-232-9643 -->
+                <td>
+                    FAX&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;${companyinformation.fax}
+                </td>
+            </tr>
+        </table>
+
+        <!-- 空 -->
+        <table>
+            <tr style="line-height: 4.5pt;">
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+
+        <table style="font-size: 9pt;">
+            <tr style="line-height: 8pt;">
+                <!-- 空 -->
+                <td width="11pt">&nbsp;</td>
+                <!-- 請求基準日 -->
+                <td width="52pt">請求基準日</td>
+                <td width="75pt">${headerInfo.baseDate}</td>
+                <!-- 専用伝票No -->
+                <td>専用伝票No</td>
+            </tr>
+        </table>
+
+        <table style="font-size: 9pt;">
+            <tr style="line-height: 8pt;">
+                <!-- 空 -->
+                <td width="11pt">&nbsp;</td>
+                <!-- 出荷日 -->
+                <td width="52pt">出荷日</td>
+                <td width="115pt">${headerInfo.deliveryDate}</td>
+                <!-- No -->
+                <td width="102pt">No&nbsp;${headerInfo.commissionSlipNumber}</td>
+                <!-- 担当 -->
+                <td width="133pt">担当&nbsp;&nbsp;${headerInfo.moideChargeName}</td>
+                <!-- 入力 -->
+                <td>入力&nbsp;&nbsp;${headerInfo.creatorName}</td>
+            </tr>
+        </table>
+        <!-- ヘッダー 終わり -->
+
+
+        <table class="side" style="font-size: 9pt;">
+            <!-- 明細のタイトル スタート -->
+            <tr style="line-height: 12pt">
+                <!-- 空 -->
+                <td width="20pt">&nbsp;</td>
+                <!-- 品名 -->
+                <td width="15pt"
+                    style="background-color: #bbc0c4; border-bottom: 0.75pt solid black; border-top: 0.75pt solid black; border-left: 0.75pt solid black;">
+                    &nbsp;</td>
+                <!-- 品名 -->
+                <td align="center" width="217pt"
+                    style="background-color: #bbc0c4; border-bottom: 0.75pt solid black; border-top: 0.75pt solid black;">
+                    品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</td>
+                <!-- 品名 -->
+                <td width="35pt"
+                    style="background-color: #bbc0c4; border-bottom: 0.75pt solid black; border-top: 0.75pt solid black; border-right: 0.75pt solid black;">
+                    &nbsp;</td>
+                <!-- 数量 -->
+                <td align="center" width="57pt"
+                    style="background-color: #bbc0c4; border-bottom: 0.75pt solid black; border-top: 0.75pt solid black; border-right: 0.75pt solid black;">
+                    数量</td>
+                <!-- 単価/金額 -->
+                <td align="center" width="68pt"
+                    style="background-color: #bbc0c4; border-bottom: 0.75pt solid black; border-top: 0.75pt solid black; border-right: 0.75pt solid black;">
+                    単価/金額
+                </td>
+                <!-- 摘要 -->
+                <td align="center" width="132pt"
+                    style="background-color: #bbc0c4; border-bottom: 0.75pt solid black; border-top: 0.75pt solid black; border-right: 0.75pt solid black;">
+                    摘要</td>
+            </tr>
+            <!-- 明細のタイトル 終わり -->
+
+            <!-- 明細 スタート -->
+            <#list dataInfo.detail as detail>
+                <tr style="line-height: 13.8pt;">
+                    <!-- 1-9 -->
+                    <td align="right" valign="bottom">${detail.serialNumber}</td>
+                    <!-- 品名 -->
+                    <td valign="bottom" colspan="2" style="border-left: 0.75pt solid black;">
+                        ${detail.designNo}&nbsp;&nbsp;${detail.commodityCode}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${detail.commodityNumber}
+                    </td>
+                    <td rowspan="2" class="two_solid" align="center">
+                        <#if detail.itemImage?? && (detail.itemImage?trim?length>0) ><img width="25pt" height="25pt"
+                                src="${detail.itemImage}" /></#if>
+                    </td>
+                    <!-- 数量 -->
+                    <td align="right" valign="bottom" style="border-right: 0.75pt solid black;">${detail.quantity}</td>
+                    <!-- 単価/金額 -->
+                    <td class="solid_dotted" align="right" valign="bottom">${detail.unitPrice}</td>
+                    <!-- 摘要 -->
+                    <td class="two_solid" rowspan="2">${detail.detailNote}</td>
+                </tr>
+                <tr>
+                    <!-- 1-9 -->
+                    <td>&nbsp;</td>
+                    <!-- 品名 -->
+                    <td style="border-left: 0.75pt solid black; border-bottom: 0.75pt solid black;" valign="bottom"
+                        colspan="2">
+                        ${detail.commodityName}</td>
+                    <!-- 数量 -->
+                    <td class="two_solid">&nbsp;</td>
+                    <!-- 単価/金額 -->
+                    <td class="two_solid" align="right" valign="bottom">${detail.amount}</td>
+                </tr>
+            </#list>
+            <!-- 明細 終わり -->
+
+            <#if pagecurr !=pageconut>
+                <tr style="line-height: 7pt">
+                    <!-- 空 -->
+                    <td rowspan="4">&nbsp;</td>
+                    <!-- 備考 -->
+                    <td align="center" valign="middle" rowspan="4"
+                        style="background-color: #bbc0c4; border-bottom: 0.75pt solid black; border-left: 0.75pt solid black;">
+                        備<br /><br />考</td>
+                    <!-- 通常委託仕切り -->
+                    <td class="two_solid" rowspan="4" colspan="2" style="padding-top: 5pt;">${footerInfo.remarks}</td>
+                    <!-- 数量 -->
+                    <td align="right" style="border-right: 0.75pt solid black;">&nbsp;</td>
+                    <!-- 単価/金額 -->
+                    <td style="border-right: 0.75pt solid black;">&nbsp;</td>
+                    <!-- 摘要 -->
+                    <td class="two_solid" rowspan="4">&nbsp;</td>
+                </tr>
+                <!-- 小計 消費税 合計 -->
+                <tr style="line-height: 8pt">
+                    <td align="center" style="border-right: 0.75pt solid black;">&nbsp;</td>
+                    <td style="border-right: 0.75pt solid black;">&nbsp;</td>
+                </tr>
+                <!-- 単価/金額 -->
+                <tr style="line-height: 8pt">
+                    <td align="center" style="border-right: 0.75pt solid black;">&nbsp;</td>
+                    <td style="border-right: 0.75pt solid black;">&nbsp;</td>
+                </tr>
+                <!-- 単価/金額 -->
+                <tr style="line-height: 8pt">
+                    <td align="center" class="two_solid">&nbsp;</td>
+                    <td class="two_solid">&nbsp;</td>
+                </tr>
+                <#else>
+                    <tr style="line-height: 7pt">
+                        <!-- 空 -->
+                        <td rowspan="4">&nbsp;</td>
+                        <!-- 備考 -->
+                        <td align="center" valign="middle" rowspan="4"
+                            style="background-color: #bbc0c4; border-bottom: 0.75pt solid black; border-left: 0.75pt solid black;">
+                            備<br /><br />考</td>
+                        <!-- 通常委託仕切り -->
+                        <td class="two_solid" rowspan="4" colspan="2" style="padding-top: 5pt;">${footerInfo.remarks}
+                        </td>
+                        <!-- 数量 -->
+                        <td align="right" style="border-right: 0.75pt solid black;">${footerInfo.quantitySum}</td>
+                        <!-- 単価/金額 -->
+                        <td style="border-right: 0.75pt solid black;">&nbsp;</td>
+                        <!-- 摘要 -->
+                        <td class="two_solid" rowspan="4">&nbsp;</td>
+                    </tr>
+                    <!-- 小計 消費税 合計 -->
+                    <tr style="line-height: 8pt">
+                        <td align="center" style="background-color: #bbc0c4; border-right: 0.75pt solid black;">小計</td>
+                        <td style="border-right: 0.75pt solid black;">${footerInfo.amountSum}</td>
+                    </tr>
+                    <!-- 単価/金額 -->
+                    <tr style="line-height: 8pt">
+                        <td align="center" style="background-color: #bbc0c4; border-right: 0.75pt solid black;">消費税</td>
+                        <td style="border-right: 0.75pt solid black;">${footerInfo.xxx}</td>
+                    </tr>
+                    <!-- 単価/金額 -->
+                    <tr style="line-height: 8pt">
+                        <td align="center" class="two_solid" style="background-color: #bbc0c4;">合計</td>
+                        <td class="two_solid">${footerInfo.xxx}</td>
+                    </tr>
+            </#if>
+        </table>
+
+        <!-- フッター スタート -->
+        <!-- 空 -->
+        <table>
+            <tr>
+                <td style="line-height: 3pt;">&nbsp;</td>
+            </tr>
+        </table>
+
+        <table style="font-size: 9pt;">
+            <tr>
+                <!-- 空 -->
+                <td rowspan="2" width="43pt">&nbsp;</td>
+                <!-- (102688) -->
+                <td width="150pt">
+                    (${footerInfo.customerCode})
+                </td>
+                <!-- 上記の通り納品申し上げます。 -->
+                <td width="128pt">
+                    上記の通り納品申し上げます。
+                </td>
+                <!-- 空 -->
+                <td rowspan="2" width="83pt">&nbsp;</td>
+                <!-- 受領日 -->
+                <td align="center" width="69pt"
+                    style="background-color: #bbc0c4; font-size: 10pt; border-left: 0.75pt solid black; border-top: 0.75pt solid black; border-right: 0.75pt solid black;">
+                    受領日
+                </td>
+                <!-- 受領印 -->
+                <td align="center" width="69pt"
+                    style="background-color: #bbc0c4; font-size: 10pt; border-top: 0.75pt solid black; border-right: 0.75pt solid black;">
+                    受領印
+                </td>
+            </tr>
+            <tr>
+                <!-- (売2021/5/11着2021/5/11) -->
+                <td height="35pt">
+                    (売&nbsp;&nbsp;:&nbsp;&nbsp;${footerInfo.saleDate}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;着&nbsp;&nbsp;:&nbsp;&nbsp;${footerInfo.clothesDate})
+                </td>
+                <!-- 20210511170734(144)99 -->
+                <td>${footerInfo.systemDate}&nbsp;&nbsp;(${footerInfo.chargeCode})&nbsp;&nbsp;99</td>
+                <!-- 月日 -->
+                <td align="right" valign="middle"
+                    style="border-left: 0.75pt solid black; border-bottom: 0.75pt solid black; border-right: 0.75pt solid black;">
+                    月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日&nbsp;&nbsp;</td>
+                <!-- 空 -->
+                <td style="border-bottom: 0.75pt solid black; border-right: 0.75pt solid black;">&nbsp;</td>
+            </tr>
+            <!-- 空 -->
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+        <!-- フッター 終わり -->
+    </body>
+</pdf>
